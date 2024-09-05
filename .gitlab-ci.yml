@@ -1,0 +1,11 @@
+image: alpine
+
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    - cp *.tgz public/
+    - cp index.yaml public/
+  artifacts:
+    paths:
+      - public
