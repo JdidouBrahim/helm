@@ -16,6 +16,8 @@ my-helm-repo/
 │   └── README.md
 └── index.yaml
 
+```
+
 
 - **mychart/**: Contains the Helm chart files for the application.
 
