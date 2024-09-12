@@ -5,8 +5,7 @@ This repository contains Helm charts used for deploying applications to a Kubern
 
 ## Repository Structure
 
-
-
+```plaintext
 my-helm-repo/
 │
 ├── mychart/
@@ -16,6 +15,7 @@ my-helm-repo/
 │   ├── values.yaml
 │   └── README.md
 └── index.yaml
+
 
 - **mychart/**: Contains the Helm chart files for the application.
 
