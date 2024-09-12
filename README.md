@@ -5,6 +5,8 @@ This repository contains Helm charts used for deploying applications to a Kubern
 
 ## Repository Structure
 
+
+
 my-helm-repo/
 │
 ├── mychart/
@@ -16,11 +18,12 @@ my-helm-repo/
 └── index.yaml
 
 - **mychart/**: Contains the Helm chart files for the application.
-    -**charts/**: Directory for dependent charts.
-    -**templates/**: Contains Kubernetes manifests that Helm uses to generate the final Kubernetes  resource files.
-    -**Chart.yaml**: Metadata about the chart (name, version, description).
-    -**values.yaml**: Default configuration values for the chart.
-    -**README.md**: Documentation for the chart (optional).
+
+ -**charts/**: Directory for dependent charts.
+ -**templates/**: Contains Kubernetes manifests that Helm uses to generate the final Kubernetes  resource files.
+ -**Chart.yaml**: Metadata about the chart (name, version, description).
+ -**values.yaml**: Default configuration values for the chart.
+ -**README.md**: Documentation for the chart (optional).
 - **index.yaml**: The Helm repository index file listing all available charts.
 
 ## Setup
