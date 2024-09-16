@@ -36,7 +36,7 @@ update-helm-repo:
       sed -i "s/tag:.*/tag: $DOCKER_TAG/" mychart/values.yaml
     # Package and push Helm chart
     - helm package mychart
-    - helm repo index . --url  $HELM_REPO_UR
+    - helm repo index . --url  $HELM_REPO_URL
     - git config --global user.email "ci@automation.com"
     - git config --global user.name "CI Automation"
     - git add .
