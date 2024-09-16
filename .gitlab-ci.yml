@@ -20,9 +20,10 @@ update-helm-repo:
     # Ensure DOCKER_TAG is available
     - echo "DOCKER_TAG=${DOCKER_TAG}"
     # Print the repository URL for debugging
-    - echo "Repository URL ${CI_REPOSITORY_URL}"
+    - echo "Repository URL $CI_REPOSITORY_URL"
+    - printenv
     # Define Helm repository URL (adjust if necessary)
-    - HELM_REPO_URL=<<<CI_REPOSITORY_URL%/*>>>/my-helm-repo/
+    - HELM_REPO_URL=$(echo $CI_REPOSITORY_URL | sed 's/.git$//')/my-helm-repo/
     - echo "Helm repository URL $HELM_REPO_URL"
     # Update values.yaml with the new Docker image tag
     - |
