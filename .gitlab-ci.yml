@@ -3,7 +3,6 @@ stages:
 
 variables:
   DOCKER_TAG: $CI_JOB_TOKEN  # Receive the tag from the Java pipeline trigger
-
 update-helm-repo:
   stage: update-helm-repo
   before_script:
@@ -21,14 +20,13 @@ update-helm-repo:
     # Ensure DOCKER_TAG is available
     - echo "DOCKER_TAG=${DOCKER_TAG}"
     # Print the repository URL for debugging
-    - echo "Repository URL: $CI_REPOSITORY_URL"
+    - echo "Repository URL ${CI_REPOSITORY_URL}"
     # Define Helm repository URL (adjust if necessary)
     - HELM_REPO_URL=<<<CI_REPOSITORY_URL%/*>>>/my-helm-repo/
-    - echo "Helm repository URL: $HELM_REPO_URL"
+    - echo "Helm repository URL $HELM_REPO_URL"
     # Update values.yaml with the new Docker image tag
     - |
       sed -i "s/tag:.*/tag: $DOCKER_TAG/" mychart/values.yaml
-
     # Package and push Helm chart
     - helm package mychart
     - helm repo index . --url  $CI_REPOSITORY_URL
