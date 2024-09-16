@@ -15,9 +15,11 @@ update-helm-repo:
     - mv linux-amd64/helm /usr/local/bin/helm
     - chmod +x /usr/local/bin/helm
   script:
-      # Print Helm version and help to debug issues
+    # Print Helm version and help to debug issues
     - helm version
     - helm help
+    # Ensure DOCKER_TAG is available
+    - echo "DOCKER_TAG=${DOCKER_TAG}"
     # Update values.yaml with the new Docker image tag
     - |
       sed -i "s/tag:.*/tag: $DOCKER_TAG/" mychart/values.yaml
