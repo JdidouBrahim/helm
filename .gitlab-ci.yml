@@ -17,20 +17,26 @@ update-helm-repo:
     # Print Helm version and help to debug issues
     - helm version
     - helm help
+
     # Ensure DOCKER_TAG is available
     - echo "DOCKER_TAG=${DOCKER_TAG}"
-    # Print the repository URL for debugging
+
+    # Print the project URL for debugging
     - echo "Repository URL $CI_REPOSITORY_URL"
-    - printenv
-    # Define Helm repository URL (adjust if necessary)
-    - HELM_REPO_URL=$(echo $CI_REPOSITORY_URL | sed 's/.git$//')/my-helm-repo/
-    - echo "Helm repository URL $HELM_REPO_URL"
+
+    # Extract base URL without the token
+    - HELM_REPO_URL=$(echo $CI_REPOSITORY_URL | sed 's/gitlab-ci-token:[^@]*@//')
+    - HELM_REPO_URL=${HELM_REPO_URL}my-helm-repo/
+
+    # Print the cleaned Helm repository URL
+    - echo "Cleaned Helm repository URL $HELM_REPO_URL"
+
     # Update values.yaml with the new Docker image tag
     - |
       sed -i "s/tag:.*/tag: $DOCKER_TAG/" mychart/values.yaml
     # Package and push Helm chart
     - helm package mychart
-    - helm repo index . --url  $CI_REPOSITORY_URL
+    - helm repo index . --url  $HELM_REPO_UR
     - git config --global user.email "ci@automation.com"
     - git config --global user.name "CI Automation"
     - git add .
