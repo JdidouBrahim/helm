@@ -39,6 +39,8 @@ update-helm-repo:
     - helm repo index . --url  $HELM_REPO_URL
     - git config --global user.email "ci@automation.com"
     - git config --global user.name "CI Automation"
+    - git fetch --all
+    - git checkout main
     - git add .
     - git commit -m "Update Helm chart with Docker tag $DOCKER_TAG"
     - git push origin main
