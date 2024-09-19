@@ -43,5 +43,7 @@ update-helm-repo:
     - git fetch --all
     - git checkout main
     - git add .
-    - git commit -m "Update Helm chart with Docker tag $DOCKER_TAG"
+    - git commit -m "Update Helm chart with Docker tag $DOCKER_TAG [ci skip]"
     - git push origin main
+  only:
+    - main
