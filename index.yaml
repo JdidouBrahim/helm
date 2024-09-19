@@ -3,12 +3,12 @@ entries:
   mychart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-19T14:56:38.412395377Z"
+    created: "2024-09-19T14:57:20.872210998Z"
     description: A Helm chart for Kubernetes
-    digest: bd8fc86cd284a445938b91e334adf088ff85ce2e63ed5903b410ce8d2797af0d
+    digest: c48db7b61732a133fae3cd2e6d8023bc41532e5d4d3798c69491dfa1143a3de3
     name: mychart
     type: application
     urls:
     - https://gitlab.com/JdidouBrahim/helm.gitmy-helm-repo/mychart-0.1.0.tgz
     version: 0.1.0
-generated: "2024-09-19T14:56:38.411306336Z"
+generated: "2024-09-19T14:57:20.871064979Z"
