@@ -39,6 +39,7 @@ update-helm-repo:
     - helm repo index . --url  $HELM_REPO_URL
     - git config --global user.email "ci@automation.com"
     - git config --global user.name "CI Automation"
+    - git remote set-url origin https://${CI_DEPLOY_USER}:${CI_JOB_TOKEN}@gitlab.com/JdidouBrahim/helm.git
     - git fetch --all
     - git checkout main
     - git add .
