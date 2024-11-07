@@ -13,16 +13,8 @@ update-helm-repo:
     - tar -zxvf helm.tar.gz
     - mv linux-amd64/helm /usr/local/bin/helm
     - chmod +x /usr/local/bin/helm
+  
   script:
-    # Print Helm version and help to debug issues
-    - helm version
-    - helm help
-
-    # Ensure DOCKER_TAG is available
-    - echo "DOCKER_TAG=${DOCKER_TAG}"
-
-    # Print the project URL for debugging
-    - echo "Repository URL $CI_REPOSITORY_URL"
 
     # Extract base URL without the token
     - HELM_REPO_URL=$(echo $CI_REPOSITORY_URL | sed 's/gitlab-ci-token:[^@]*@//')
@@ -34,6 +26,7 @@ update-helm-repo:
     # Update values.yaml with the new Docker image tag
     - |
       sed -i "s/tag:.*/tag: $DOCKER_TAG/" mychart/values.yaml
+    
     # Package and push Helm chart
     - helm package mychart
     - helm repo index . --url  $HELM_REPO_URL
@@ -45,5 +38,6 @@ update-helm-repo:
     - git add .
     - git commit -m "Update Helm chart with Docker tag $DOCKER_TAG [ci skip]"
     - git push origin main
+  
   only:
     - main
