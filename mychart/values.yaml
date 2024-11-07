@@ -8,7 +8,7 @@ image:
   repository: myapp
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: glpat-cqJVAdwsK79i635Dv2J6
+  tag: glpat-yvn8tig6c2gjyj1Grgps
 
 imagePullSecrets: []
 nameOverride: ""
