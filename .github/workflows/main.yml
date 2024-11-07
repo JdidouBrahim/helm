@@ -1,0 +1,50 @@
+# .github/workflows/update-helm-repo.yml
+name: Update Helm Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-helm-repo:
+    runs-on: ubuntu-latest
+
+    env:
+      DOCKER_TAG: ${{ secrets.PAT }}  # Define the Docker tag using GitHub Secrets
+      HELM_REPO_URL: "https://github.com/JdidouBrahim/helm" # Define the Helm Repo URL
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Curl and Git
+        run: |
+          sudo apt-get update && sudo apt-get install -y curl git
+
+      - name: Install Helm
+        run: |
+          curl -fsSL -o helm.tar.gz https://get.helm.sh/helm-v3.9.4-linux-amd64.tar.gz
+          tar -zxvf helm.tar.gz
+          sudo mv linux-amd64/helm /usr/local/bin/helm
+          chmod +x /usr/local/bin/helm
+
+      - name: Update Docker Tag in values.yaml
+        run: |
+          sed -i "s/tag:.*/tag: $DOCKER_TAG/" mychart/values.yaml
+
+      - name: Package and Push Helm Chart
+        run: |
+          helm package mychart
+          helm repo index . --url $HELM_REPO_URL
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "ci@automation.com"
+          git config --global user.name "CI Automation"
+          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/JdidouBrahim/helm.git
+          git fetch --all
+          git checkout main
+          git add .
+          git commit -m "Update Helm chart with Docker tag $DOCKER_TAG [ci skip]"
+          git push origin main
