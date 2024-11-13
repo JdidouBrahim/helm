@@ -2,6 +2,7 @@
 name: Update Helm Repo
 
 on:
+  workflow_dispatch:  # This allows manual or API-triggered dispatch
   push:
     branches:
       - main
