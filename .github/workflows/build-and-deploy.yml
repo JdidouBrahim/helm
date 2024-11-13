@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      HELM_REPO_URL: "https://github.com/JdidouBrahim/helm" # Define the Helm Repo URL
+      HELM_REPO_URL: "https://jdidoubrahim.github.io/helm" # Define the Helm Repo URL
 
     steps:
       - name: Checkout code
