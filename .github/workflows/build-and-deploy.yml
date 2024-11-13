@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DOCKER_TAG: ${{ secrets.PAT }}  # Define the Docker tag using GitHub Secrets
       HELM_REPO_URL: "https://github.com/JdidouBrahim/helm" # Define the Helm Repo URL
 
     steps:
@@ -47,7 +46,7 @@ jobs:
         run: |
           git config --global user.email "ci@automation.com"
           git config --global user.name "CI Automation"
-          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/JdidouBrahim/helm.git
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/JdidouBrahim/helm.git
           git fetch --all
           git checkout main
           git add .
