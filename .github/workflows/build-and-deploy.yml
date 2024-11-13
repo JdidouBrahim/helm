@@ -3,6 +3,10 @@ name: Update Helm Repo
 
 on:
   workflow_dispatch:  # This allows manual or API-triggered dispatch
+    inputs:
+      DOCKER_TAG:
+        description: 'Docker tag for the image'
+        required: true
   push:
     branches:
       - main
@@ -32,7 +36,7 @@ jobs:
 
       - name: Update Docker Tag in values.yaml
         run: |
-          sed -i "s/tag:.*/tag: $DOCKER_TAG/" mychart/values.yaml
+          sed -i "s/tag:.*/tag: ${{ github.event.inputs.DOCKER_TAG }}/" mychart/values.yaml
 
       - name: Package and Push Helm Chart
         run: |
@@ -47,5 +51,5 @@ jobs:
           git fetch --all
           git checkout main
           git add .
-          git commit -m "Update Helm chart with Docker tag $DOCKER_TAG [ci skip]"
+          git commit -m "Update Helm chart with Docker tag ${{ github.event.inputs.DOCKER_TAG }} [ci skip]"
           git push origin main
