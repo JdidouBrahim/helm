@@ -31,7 +31,7 @@ my-helm-repo/
 ## Setup
 
 1. **Add the Helm Repository:**
-`helm repo add my-helm-repo https://helm-18bc38.gitlab.io/my-helm-repo/
+`helm repo add my-helm-repo https://jdidoubrahim.github.io/helm
  helm repo update
 `
 
@@ -59,7 +59,7 @@ my-helm-repo/
 
 3. Update the Index File:
 
-`helm repo index . --url https://helm-18bc38.gitlab.io/my-helm-repo/
+`helm repo index . --url https://jdidoubrahim.github.io/helm
 `
 
 4. Push Changes: Commit and push changes to the repository.
