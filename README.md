@@ -31,16 +31,16 @@ my-helm-repo/
 ## Setup
 
 1. **Add the Helm Repository:**
-`helm repo add myHelmRepo https://helm-18bc38.gitlab.io/my-helm-repo/
+`helm repo add my-helm-repo https://helm-18bc38.gitlab.io/my-helm-repo/
  helm repo update
 `
 
 2. **Install the Chart:**
-`helm install myapp myHelmRepo/mychart
+`helm install myapp my-helm-repo/mychart
 `
 
 3. **Upgrade the Chart:**
-`helm upgrade myapp myHelmRepo/mychart
+`helm upgrade myapp my-helm-repo/mychart
 `
 
 4. **Uninstall the Chart:**
@@ -63,5 +63,3 @@ my-helm-repo/
 `
 
 4. Push Changes: Commit and push changes to the repository.
-
-
